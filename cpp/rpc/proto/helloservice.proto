@@ -1,0 +1,18 @@
+// .proto文件的骨架必须完整，否则无法通过protoc定义
+// 语法版本声明
+syntax = "proto3";
+
+package rpc.proto.helloservice;
+
+message HelloRequest{
+    string name = 1;
+}
+
+message HelloResponse{
+    string reply = 1;
+}
+
+service HelloService{
+    rpc SayHello(HelloRequest)
+        returns (HelloResponse);
+}
