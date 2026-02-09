@@ -1,0 +1,28 @@
+// 流式服务的 proto 定义
+syntax = "proto3";
+
+package rpc.proto.streamservice;
+
+// 请求消息
+message StreamRequest {
+    string name = 1;
+    int32 count = 2;
+}
+
+// 响应消息
+message StreamResponse {
+    string message = 1;
+    int32 sequence = 2;
+}
+
+// 流式服务定义
+service StreamService {
+    // 服务端流式 RPC
+    rpc ServerStream(StreamRequest) returns (stream StreamResponse);
+
+    // 客户端流式 RPC
+    rpc ClientStream(stream StreamRequest) returns (StreamResponse);
+
+    // 双向流式 RPC
+    rpc BidirectionalStream(stream StreamRequest) returns (stream StreamResponse);
+}
